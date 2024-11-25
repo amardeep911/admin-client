@@ -69,6 +69,8 @@ const AddServiceDiscount = ({ serviceList }) => {
     }
   };
 
+  console.log(selectedService);
+
   return (
     <>
       <div className="w-full my-4 flex items-center justify-between">

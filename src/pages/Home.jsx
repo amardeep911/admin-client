@@ -37,8 +37,10 @@ const Home = () => {
           ]);
 
         const usersData = usersResponse.data;
+        console.log(usersData);
         console.log(transactions.data);
         // Calculate the total balance of all users
+        console.log()
         const totalBalance = usersData.reduce(
           (accumulator, user) => accumulator + user.balance,
           0

@@ -16,7 +16,7 @@ const UpiUpdate = () => {
   const navigate = useNavigate();
   const getApi = () =>
     axios
-      .get("/get-reacharge-api?type=upi")
+      .get("/get-recharge-api?type=upi")
       .then((response) => {
         setApi(response.data.api_key);
       })
@@ -87,34 +87,32 @@ const UpiUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const upiUpdatePromise = new Promise((resolve, reject) => {
-      const upiUpdate = async () => {
-        try {
-          const response = await axios.post("/add-recharge-api", {
-            recharge_type: "upi",
-            api_key: newUpi, // Use the newApiKey state
-          });
-          setNewUpi("");
-          getApi();
-          resolve(response);
-        } catch (error) {
-          reject(error);
-        }
-      };
 
-      upiUpdate();
-    });
-    await toast.promise(upiUpdatePromise, {
-      loading: "updating upi...",
-      success: (r) => {
-        return r.data.message;
-      },
-      error: (error) => {
+    // Create a promise for toast
+    const upiUpdatePromise = axios
+      .post("/add-recharge-api", {
+        recharge_type: "upi",
+        api_key: newUpi, // Use the newApiKey state
+      })
+      .then((response) => {
+        // Clear the input field and refresh the API list
+        setNewUpi("");
+        getApi();
+        return response.data.message; // Use the success message from the response
+      })
+      .catch((error) => {
+        // Handle errors and return an error message for the toast
         const errorMessage =
           error.response?.data?.error ||
-          "Error updating upi. Please try again.";
-        return errorMessage;
-      },
+          "Error updating UPI. Please try again.";
+        throw new Error(errorMessage); // Throw to handle in the toast.error
+      });
+
+    // Use toast.promise to handle feedback to the user
+    await toast.promise(upiUpdatePromise, {
+      loading: "Updating UPI...",
+      success: (message) => message,
+      error: (error) => error.message,
     });
   };
 
