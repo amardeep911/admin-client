@@ -156,7 +156,7 @@ const ApiUpdate = () => {
   const handleExchangeRateSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`/add-exhange-rate-margin-server`, {
+      await axios.post(`/add-exchange-rate-margin-server`, {
         server: selectedServer,
         exchangeRate: newExchangeRate,
       });
@@ -170,7 +170,7 @@ const ApiUpdate = () => {
   const handleMarginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`/add-exhange-rate-margin-server`, {
+      await axios.post(`/add-exchange-rate-margin-server`, {
         server: selectedServer,
         margin: newMargin,
       });

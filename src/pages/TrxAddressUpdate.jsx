@@ -13,7 +13,7 @@ const TrxAddressUpdate = () => {
   const navigate = useNavigate();
   const getTrxAddress = () =>
     axios
-      .get("/get-reacharge-api?type=trx")
+      .get("/get-recharge-api?type=trx")
       .then((response) => {
         setTrxAddress(response.data.api_key);
       })
