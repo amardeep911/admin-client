@@ -116,7 +116,7 @@ const AddDiscount = () => {
                   htmlFor="email"
                   className="block text-base text-[#9d9d9d] font-normal py-3"
                 >
-                  User Email
+                  User Emails
                 </Label>
                 <Input
                   id="email"
