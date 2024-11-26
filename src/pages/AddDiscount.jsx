@@ -257,17 +257,31 @@ const ServiceDropdown = ({ selectedService, onServiceChange, serviceList }) => {
 };
 
 const ServerDropdown = ({ selectedServer, onServerChange, serverList }) => {
+  // Debugging logs
+  console.log("ServerDropdown - serverList:", serverList);
+  console.log("ServerDropdown - selectedServer (index):", selectedServer);
+
   return (
-    <Select value={selectedServer} onValueChange={onServerChange}>
+    <Select
+      value={selectedServer !== "" ? selectedServer.toString() : ""}
+      onValueChange={(value) => onServerChange(parseInt(value, 10))} // Ensure the value is converted back to an integer
+    >
       <SelectTrigger className="w-full dark bg-[#282828] h-12 pl-3 rounded-lg text-[#9d9d9d] !placeholder-[#9d9d9d] bg-transparent border border-[#e0effe] justify-between">
-        <SelectValue>{selectedServer}</SelectValue>
+        <SelectValue>
+          {selectedServer !== ""
+            ? `Server ${parseInt(selectedServer, 10) + 1}`
+            : "Select a server"}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent className="dark bg-[#1e1e1e]">
         <SelectGroup>
-          <SelectLabel className="font-normal">Service Name</SelectLabel>
-          {serverList.map((server) => (
-            <SelectItem key={server.serverNumber} value={server.serverNumber}>
-              {server.serverNumber}
+          <SelectLabel className="font-normal">Server Number</SelectLabel>
+          {serverList.map((_, index) => (
+            <SelectItem
+              key={index} // Use index as a unique key
+              value={index.toString()} // Pass the index as a string value
+            >
+              Server {index + 1} {/* Display as "Server 1", "Server 2", etc. */}
             </SelectItem>
           ))}
         </SelectGroup>
