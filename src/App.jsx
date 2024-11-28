@@ -28,6 +28,7 @@ const AddDiscount = lazy(() => import("@/pages/AddDiscount"));
 const UnsendTrx = lazy(() => import("@/pages/UnsendTrx"));
 const BlockedUser = lazy(() => import("@/pages/BlockedUser"));
 const RechargeMaintenance = lazy(() => import("@/pages/RechargeMaintenance"));
+const MinimumRecharge = lazy(() => import("@/pages/MinimumRecharge"));
 const BlockStatus = lazy(() => import("@/pages/BlockStatus"));
 const UserDiscountDetails = lazy(() => import("@/pages/UserDiscountDetails"));
 const DiscountAfterAddingUser = lazy(() =>
@@ -240,6 +241,14 @@ function App() {
             element={
               <ProtectRoute isAuthenticated={isAuthenticated} redirect="/login">
                 <RechargeMaintenance />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="/minimum-recharge"
+            element={
+              <ProtectRoute isAuthenticated={isAuthenticated} redirect="/login">
+                <MinimumRecharge />
               </ProtectRoute>
             }
           />
