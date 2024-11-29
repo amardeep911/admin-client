@@ -17,6 +17,7 @@ const Home = () => {
   const navigateToUnsendTrx = () => navigate("/unsend-trx");
   const navigateToBlockedUser = () => navigate("/blocked-users");
   const navigateToMinumRechage = () => navigate("/minimum-recharge");
+  const navigateToServerBalance = () => navigate("/server-balance-check");
 
   const [totalAmount, setTotalAmount] = useState("0.00"); // State to store the total amount
   const [totalUsers, setTotalUsers] = useState("0");
@@ -169,6 +170,14 @@ const Home = () => {
             className="w-full text-sm font-normal h-14 text-white bg-[#282828] hover:bg-[#212121] !justify-between"
           >
             Minimum Recharge
+            <Icon.arrowRight className="w-4 h-4" />
+          </Button>
+          <Button
+            variant=""
+            onClick={navigateToServerBalance}
+            className="w-full text-sm font-normal h-14 text-white bg-[#282828] hover:bg-[#212121] !justify-between"
+          >
+            Check Server Balance
             <Icon.arrowRight className="w-4 h-4" />
           </Button>
         </div>

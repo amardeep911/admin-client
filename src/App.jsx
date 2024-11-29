@@ -23,6 +23,7 @@ const TrxAddressUpdate = lazy(() => import("@/pages/TrxAddressUpdate"));
 const Discount = lazy(() => import("@/pages/Discount"));
 const ServerDiscount = lazy(() => import("@/pages/ServerDiscount"));
 const AddServerDiscount = lazy(() => import("@/pages/AddServerDiscount"));
+const ServerBalanceCheck = lazy(() => import("@/pages/ServerBalanceCheck"));
 const ServiceDiscounts = lazy(() => import("@/pages/ServiceDiscounts"));
 const AddDiscount = lazy(() => import("@/pages/AddDiscount"));
 const UnsendTrx = lazy(() => import("@/pages/UnsendTrx"));
@@ -257,6 +258,14 @@ function App() {
             element={
               <ProtectRoute isAuthenticated={isAuthenticated} redirect="/login">
                 <BlockStatus />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="/server-balance-check"
+            element={
+              <ProtectRoute isAuthenticated={isAuthenticated}>
+                <ServerBalanceCheck />
               </ProtectRoute>
             }
           />
