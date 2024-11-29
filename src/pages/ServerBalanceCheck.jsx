@@ -45,7 +45,7 @@ const ServerBalanceCheck = () => {
           s.server === serverId
             ? {
                 ...s,
-                balance: `₹${response.data.balance}`,
+                balance: `${response.data.balance}`,
                 fetchStatus: "success",
               }
             : s
