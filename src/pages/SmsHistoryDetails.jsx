@@ -33,6 +33,7 @@ const SmsHistoryDetails = () => {
       try {
         const response = await axios.get(`/transaction-history?userId=${id}`);
         setSmsDetails(Array.isArray(response.data) ? response.data : []);
+        console.log(response.data);
       } catch (error) {
         console.error("Failed to fetch SMS history details:", error);
       }
@@ -55,7 +56,7 @@ const SmsHistoryDetails = () => {
     if (!Array.isArray(data)) {
       return [];
     }
-
+  
     const groupedData = data.reduce((acc, entry) => {
       if (!acc[entry.id]) {
         acc[entry.id] = [];
@@ -63,31 +64,31 @@ const SmsHistoryDetails = () => {
       acc[entry.id].push(entry);
       return acc;
     }, {});
-
+  
     const preparedData = Object.values(groupedData).map((entries) => {
       const finishedEntries = entries.filter(
-        (entry) => entry.status === "FINISHED"
+        (entry) => entry.status === "SUCCESS"
       );
       const cancelledEntries = entries.filter(
         (entry) => entry.status === "CANCELLED"
       );
-
+  
       const displayEntry =
         cancelledEntries.length > 0
           ? cancelledEntries[0]
-          : finishedEntries.find((entry) => entry.otp !== null) ||
+          : finishedEntries.find((entry) => entry.otp && entry.otp.length > 0) ||
             finishedEntries[0];
-
+  
       return {
         ...displayEntry,
         otps:
           finishedEntries
-            .filter((entry) => entry.otp)
-            .map((entry) => entry.otp)
-            .join(`<br><br>`) || "-",
+            .filter((entry) => entry.otp && entry.otp.length > 0)
+            .flatMap((entry) => entry.otp) // Merge all OTPs from successful entries
+            .join("<br><br>") || "-", // Join OTPs with `<br><br>` for multi-line display
       };
     });
-
+  
     return preparedData;
   };
 
@@ -112,6 +113,8 @@ const SmsHistoryDetails = () => {
         : -1
     )
     .reverse();
+
+  console.log(sortedFilteredTransactionHistory);
 
   const getDateRange = (data) => {
     if (data.length === 0) return "No data available";
