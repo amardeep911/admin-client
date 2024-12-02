@@ -115,14 +115,20 @@ const SmsHistoryDetails = () => {
 
   const getDateRange = (data) => {
     if (data.length === 0) return "No data available";
-    const dates = data.map((entry) =>
-      moment(entry.date_time, "MM/DD/YYYYTHH:mm:ss A")
-    );
-    const minDate = moment.min(dates);
-    const maxDate = moment.max(dates);
+
+    // Parse dates and filter out invalid ones
+    const validDates = data
+      .map((entry) => moment(entry.date_time, moment.ISO_8601, true))
+      .filter((date) => date.isValid());
+
+    if (validDates.length === 0) return "No valid dates available";
+
+    // Get the minimum and maximum dates
+    const minDate = moment.min(validDates);
+    const maxDate = moment.max(validDates);
+
     return `${minDate.format("DD/MM/YY")} - ${maxDate.format("DD/MM/YY")}`;
   };
-
   const handleTransactionLimitChange = (value) => {
     setTransactionLimit(Number(value));
     setTransactionCurrentPage(1); // Reset to the first page when limit changes
