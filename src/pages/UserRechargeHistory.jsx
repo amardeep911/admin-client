@@ -118,10 +118,11 @@ const UserRechargeHistory = () => {
                         className="border-b-2 border-[#949494] p-3"
                         style={wrapStyle}
                       >
-                        {moment(
-                          history.date_time,
-                          "MM/DD/YYYYThh:mm:ss A"
-                        ).format("DD/MM/YYYY hh:mm:ss A")}
+                        {moment(history.date_time).isValid()
+                          ? moment(history.date_time).format(
+                              "DD/MM/YYYY hh:mm:ss A"
+                            )
+                          : "Invalid Date"}
                       </td>
                     </tr>
                     <tr>

@@ -231,9 +231,11 @@ const SmsHistoryDetails = () => {
                         className="border-b-2 border-[#949494] p-3"
                         style={wrapStyle}
                       >
-                        {moment(item.date_time, "MM/DD/YYYYTHH:mm:ss A").format(
-                          "DD/MM/YYYY hh:mm:ss A"
-                        )}
+                        {moment(item.date_time).isValid()
+                          ? moment(item.date_time).format(
+                              "DD/MM/YYYY hh:mm:ss A"
+                            )
+                          : "Invalid Date"}
                       </td>
                     </tr>
                     <tr>
