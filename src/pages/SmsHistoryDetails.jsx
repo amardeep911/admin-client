@@ -56,7 +56,7 @@ const SmsHistoryDetails = () => {
     if (!Array.isArray(data)) {
       return [];
     }
-  
+
     const groupedData = data.reduce((acc, entry) => {
       if (!acc[entry.id]) {
         acc[entry.id] = [];
@@ -64,7 +64,7 @@ const SmsHistoryDetails = () => {
       acc[entry.id].push(entry);
       return acc;
     }, {});
-  
+
     const preparedData = Object.values(groupedData).map((entries) => {
       const finishedEntries = entries.filter(
         (entry) => entry.status === "SUCCESS"
@@ -72,13 +72,14 @@ const SmsHistoryDetails = () => {
       const cancelledEntries = entries.filter(
         (entry) => entry.status === "CANCELLED"
       );
-  
+
       const displayEntry =
         cancelledEntries.length > 0
           ? cancelledEntries[0]
-          : finishedEntries.find((entry) => entry.otp && entry.otp.length > 0) ||
-            finishedEntries[0];
-  
+          : finishedEntries.find(
+              (entry) => entry.otp && entry.otp.length > 0
+            ) || finishedEntries[0];
+
       return {
         ...displayEntry,
         otps:
@@ -88,7 +89,7 @@ const SmsHistoryDetails = () => {
             .join("<br><br>") || "-", // Join OTPs with `<br><br>` for multi-line display
       };
     });
-  
+
     return preparedData;
   };
 
@@ -96,7 +97,7 @@ const SmsHistoryDetails = () => {
 
   if (tranFilter === "Success") {
     filteredTransactionHistory = filteredTransactionHistory.filter(
-      (entry) => entry.status === "FINISHED"
+      (entry) => entry.status === "SUCCESS"
     );
   } else if (tranFilter === "Cancelled") {
     filteredTransactionHistory = filteredTransactionHistory.filter(
