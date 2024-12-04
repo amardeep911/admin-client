@@ -205,7 +205,7 @@ const UserDataDetails = () => {
                     className="border-b-2 border-[#949494] p-3"
                     style={wrapStyle}
                   >
-                    {userData.password ? "Set" : "Not Set"}
+                    {userData.password ? userData.password : "Not Set"}
                   </td>
                 </tr>
                 <tr>
