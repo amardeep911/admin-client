@@ -199,6 +199,17 @@ const UserDataDetails = () => {
                 </tr>
                 <tr>
                   <td className="border-b-2 border-[#949494] p-3 px-5 text-[#959595]">
+                    Password
+                  </td>
+                  <td
+                    className="border-b-2 border-[#949494] p-3"
+                    style={wrapStyle}
+                  >
+                    {userData.password ? "Set" : "Not Set"}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-b-2 border-[#949494] p-3 px-5 text-[#959595]">
                     Login Type
                   </td>
                   <td
