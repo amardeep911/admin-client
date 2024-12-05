@@ -38,7 +38,7 @@ const DiscountAfterAddingUser = lazy(() =>
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function App() {
-  axios.defaults.baseURL = "https://paidsmsbackend.builderx100.com/api";
+  axios.defaults.baseURL = "https://api.paidsms.org/api";
   axios.defaults.withCredentials = true;
   const { isAuthenticated } = useAuth();
   return (
