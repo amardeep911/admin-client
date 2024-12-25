@@ -227,6 +227,17 @@ const SmsHistoryDetails = () => {
                     </tr>
                     <tr>
                       <td className="border-b-2 border-[#949494] p-3 px-5 text-[#959595]">
+                        Price
+                      </td>
+                      <td
+                        className="border-b-2 border-[#949494] p-3"
+                        style={wrapStyle}
+                      >
+                        {item.price}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border-b-2 border-[#949494] p-3 px-5 text-[#959595]">
                         OTP
                       </td>
                       <td className="border-b-2 border-[#949494] p-3">
@@ -257,6 +268,17 @@ const SmsHistoryDetails = () => {
                         style={wrapStyle}
                       >
                         {item.service}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border-b-2 border-[#949494] p-3 px-5 text-[#959595]">
+                        Server No
+                      </td>
+                      <td
+                        className="border-b-2 border-[#949494] p-3"
+                        style={wrapStyle}
+                      >
+                        {item.server}
                       </td>
                     </tr>
                     <tr>
