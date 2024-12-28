@@ -85,7 +85,7 @@ const AddDiscount = () => {
       await axios.post("/users/add-discount", {
         email,
         service: selectedService,
-        server: selectedServer,
+        server: parseInt(selectedServer),
         discount,
       });
 
