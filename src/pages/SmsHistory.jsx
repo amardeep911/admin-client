@@ -35,7 +35,7 @@ const SmsHistory = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get("/get-all-users");
-        setUsers(response.data);
+        setUsers(response.data.reverse()); // Reverse the data from the API
         setLoading(false);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -74,11 +74,9 @@ const SmsHistory = () => {
 
   const startIndex = (currentPage - 1) * limit;
 
-  const filteredData = users
-    .filter((user) =>
-      user.email.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .sort((a, b) => a.email.localeCompare(b.email)); // Sort by email
+  const filteredData = users.filter((user) =>
+    user.email.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const selectedData = filteredData.slice(startIndex, startIndex + limit);
 
