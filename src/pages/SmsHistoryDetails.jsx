@@ -105,15 +105,11 @@ const SmsHistoryDetails = () => {
     );
   }
 
-  const sortedFilteredTransactionHistory = filteredTransactionHistory
-    .sort((a, b) =>
-      moment(b.date_time, "MM/DD/YYYYTHH:mm:ss A").isBefore(
-        moment(a.date_time, "MM/DD/YYYYTHH:mm:ss A")
-      )
-        ? 1
-        : -1
-    )
-    .reverse();
+  const sortedFilteredTransactionHistory = filteredTransactionHistory.sort(
+    (a, b) => {
+      return moment(b.date_time).diff(moment(a.date_time));
+    }
+  );
 
   console.log(sortedFilteredTransactionHistory);
 

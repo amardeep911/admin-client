@@ -74,9 +74,11 @@ const SmsHistory = () => {
 
   const startIndex = (currentPage - 1) * limit;
 
-  const filteredData = users.filter((user) =>
-    user.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredData = users
+    .filter((user) =>
+      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => a.email.localeCompare(b.email)); // Sort by email
 
   const selectedData = filteredData.slice(startIndex, startIndex + limit);
 
